@@ -4,9 +4,7 @@
 
 #define MAX 100
 
-// =====================================
 // STRUCT KENDARAAN
-// =====================================
 typedef struct Kendaraan {
     char plat[20];
     char jenis[20];
@@ -21,59 +19,45 @@ typedef struct Kendaraan {
     struct Kendaraan *next;
 } Kendaraan;
 
-// =====================================
 // PRIORITY STACK
-// =====================================
 typedef struct {
     Kendaraan data[MAX];
     int top;
 } PriorityStack;
 
-// =====================================
 // TEMPORARY STACK
-// =====================================
 typedef struct {
     Kendaraan data[MAX];
     int top;
 } TempStack;
 
-// =====================================
 // GLOBAL
-// =====================================
 PriorityStack parkir;
 TempStack sementara;
 
 Kendaraan *head = NULL;
 
-// =====================================
 // INISIALISASI STACK
-// =====================================
 void initStack() {
     parkir.top = -1;
     sementara.top = -1;
 }
 
-// =====================================
 // KONVERSI JAM -> MENIT
-// =====================================
 int konversiMenit(char waktu[]) {
     int jam, menit;
     sscanf(waktu, "%d:%d", &jam, &menit);
     return (jam * 60) + menit;
 }
 
-// =====================================
 // HITUNG DURASI
-// =====================================
 int hitungDurasi(char masuk[], char keluar[]) {
     int totalMasuk = konversiMenit(masuk);
     int totalKeluar = konversiMenit(keluar);
     return totalKeluar - totalMasuk;
 }
 
-// =====================================
 // FORMAT DURASI
-// =====================================
 void tampilDurasi(int totalMenit) {
     int jam = totalMenit / 60;
     int menit = totalMenit % 60;
@@ -86,12 +70,10 @@ void tampilDurasi(int totalMenit) {
     }
 }
 
-// =====================================
 // PUSH PRIORITY STACK
 // mode:
 // 1 = kendaraan baru masuk
 // 2 = kembali dari temp stack
-// =====================================
 void pushPriority(Kendaraan k, int mode) {
     if (parkir.top == MAX - 1) {
         printf("Parkiran penuh!\n");
@@ -121,31 +103,23 @@ void pushPriority(Kendaraan k, int mode) {
     }
 }
 
-// =====================================
 // POP PRIORITY STACK
-// =====================================
 Kendaraan popPriority() {
     return parkir.data[parkir.top--];
 }
 
-// =====================================
 // PUSH TEMP STACK
-// =====================================
 void pushTemp(Kendaraan k) {
     sementara.data[++sementara.top] = k;
     printf("Kendaraan %s dipindahkan ke Temporary Stack\n", k.plat);
 }
 
-// =====================================
 // POP TEMP STACK
-// =====================================
 Kendaraan popTemp() {
     return sementara.data[sementara.top--];
 }
 
-// =====================================
 // TAMBAH LINKED LIST
-// =====================================
 void tambahLinkedList(Kendaraan k) {
 
     Kendaraan *baru =
@@ -167,9 +141,7 @@ void tambahLinkedList(Kendaraan k) {
     }
 }
 
-// =====================================
 // KENDARAAN MASUK
-// =====================================
 void kendaraanMasuk() {
     Kendaraan k;
 
@@ -196,9 +168,7 @@ void kendaraanMasuk() {
     tambahLinkedList(k);
 }
 
-// =====================================
 // KENDARAAN KELUAR
-// =====================================
 void kendaraanKeluar() {
     char target[20];
     int ditemukan = 0;
@@ -260,9 +230,7 @@ void kendaraanKeluar() {
     }
 }
 
-// =====================================
 // TAMPILKAN DATA
-// =====================================
 void tampilData() {
     Kendaraan *curr = head;
 
@@ -313,9 +281,7 @@ void tampilData() {
     }
 }
 
-// =====================================
 // LINEAR SEARCH
-// =====================================
 void cariKendaraan() {
     char target[20];
     int ditemukan = 0;
@@ -371,18 +337,14 @@ void cariKendaraan() {
     }
 }
 
-// =====================================
 // SWAP QUICK SORT
-// =====================================
 void swap(Kendaraan *a, Kendaraan *b) {
     Kendaraan temp = *a;
     *a = *b;
     *b = temp;
 }
 
-// =====================================
 // PARTITION QUICK SORT
-// =====================================
 int partition(Kendaraan arr[],
               int low,
               int high) {
@@ -411,9 +373,7 @@ int partition(Kendaraan arr[],
     return i + 1;
 }
 
-// =====================================
 // QUICK SORT
-// =====================================
 void quickSort(Kendaraan arr[],
                int low,
                int high) {
@@ -428,9 +388,7 @@ void quickSort(Kendaraan arr[],
     }
 }
 
-// =====================================
 // SORTING DURASI
-// =====================================
 void urutDurasi() {
     Kendaraan arr[MAX];
     int n = 0;
@@ -466,9 +424,7 @@ void urutDurasi() {
     }
 }
 
-// =====================================
 // MENU
-// =====================================
 void menu() {
     printf("\n");
     printf("====================================\n");
@@ -487,9 +443,7 @@ void menu() {
     printf("Pilih menu : ");
 }
 
-// =====================================
 // MAIN
-// =====================================
 int main() {
     initStack();
     int pilihan;
