@@ -108,3 +108,137 @@ void kendaraanMasuk() {
     pushPriority(k, 1);
     tambahLinkedList(k);
 }
+
+/*Fungsi untuk menangani proses kendaraan yang akan keluar dari area parkir*/
+void kendaraanKeluar() {
+    char target[20];
+    int ditemukan = 0;
+
+/*Memeriksa Priority Stack kosong*/
+    if (parkir.top == -1) {
+        printf("Parkiran kosong.\n");
+        return;
+    }
+    printf("\nMasukkan plat kendaraan keluar : ");
+    scanf(" %19s", target);
+
+while (parkir.top != -1) {
+        Kendaraan k = popPriority();
+        if (strcmp(k.plat, target) == 0) {
+            /*Data kendaraan berhasil ditemukan*/
+            ditemukan = 1;     
+            printf("Waktu Keluar (HH:MM): ");
+            scanf(" %9s", k.waktuKeluar);
+            k.status = 0;
+
+            Kendaraan *curr = head;
+            while (curr != NULL) {
+                if (strcmp(curr->plat, target) == 0 && curr->status == 1) {
+                    curr->status = 0;
+                    strcpy(curr->waktuKeluar, k.waktuKeluar);
+                    break;
+                }
+            /*Memindahkan pointer ke node berikutnya, proses traversal dapat berlanjut*/
+                curr = curr->next;  
+            }
+            printf("\nKendaraan %s berhasil keluar\n", k.plat);
+            break;
+        } else {
+            pushTemp(k);
+        }
+    }
+
+ while (sementara.top != -1) {
+        pushPriority(popTemp(), 2);
+    }
+
+    if (!ditemukan) {
+        printf("Kendaraan tidak ditemukan.\n");
+    }
+}
+
+void tampilData() {
+    Kendaraan *curr = head;
+    if (curr == NULL) {
+        printf("Data kosong.\n");
+        return;
+    }
+    printf("\n=== DATA KENDARAAN ===\n");
+    /*menelusuri seluruh node pada Linked List sampai node terakhir*/
+    while (curr != NULL) {
+        printf("--------------------------------\n");
+        printf("Plat            : %s\n", curr->plat);
+        printf("Jenis           : %s\n", curr->jenis);
+        printf("Prioritas       : %d\n", curr->prioritas);
+        printf("Waktu Masuk     : %s\n", curr->waktuMasuk);
+
+        if (curr->status == 0) {
+            int durasi = hitungDurasi(curr->waktuMasuk, curr->waktuKeluar);
+            printf("Waktu Keluar    : %s\n", curr->waktuKeluar);
+            printf("Durasi Parkir   : ");
+            tampilDurasi(durasi);
+            printf("\nStatus          : Keluar\n");
+        } else {
+            printf("Status          : Masih Parkir\n");
+        }
+        curr = curr->next;
+    }
+}
+
+void cariKendaraan() {
+    char target[20];
+    int ditemukan = 0;
+    printf("\nMasukkan plat kendaraan : ");
+    scanf(" %19s", target);
+
+    Kendaraan *curr = head;
+    while (curr != NULL) {
+        if (strcmp(curr->plat, target) == 0) {
+            ditemukan = 1;
+            printf("\n=== DATA DITEMUKAN ===\n");
+            printf("Plat            : %s\n", curr->plat);
+            printf("Jenis           : %s\n", curr->jenis);
+            printf("Prioritas       : %d\n", curr->prioritas);
+            printf("Waktu Masuk     : %s\n", curr->waktuMasuk);
+
+            if (curr->status == 0) {
+                int durasi = hitungDurasi(curr->waktuMasuk, curr->waktuKeluar);
+                printf("Waktu Keluar    : %s\n", curr->waktuKeluar);
+                printf("Durasi Parkir   : ");
+                tampilDurasi(durasi);
+                printf("\n");
+            } else {
+                printf("Status          : Masih Parkir\n");
+            }
+            break;
+        }
+        curr = curr->next;
+    }
+    if (!ditemukan) {
+        printf("Data tidak ditemukan.\n");
+    }
+}
+
+void swap(Kendaraan *a, Kendaraan *b) {
+    /*Data kendaraan pertama disimpan sementara agar tidak hilang saat proses pengurutan*/
+    Kendaraan temp = *a;
+    
+    *a = *b;
+    *b = temp;
+}
+
+int partition(Kendaraan arr[], int low, int high) {
+    /*Pivot sebagai nilai pembanding dan diambil dari durasi kendaraan terakhir*/
+    int pivot = hitungDurasi(arr[high].waktuMasuk, arr[high].waktuKeluar);
+    
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        int durasi = hitungDurasi(arr[j].waktuMasuk, arr[j].waktuKeluar);
+        if (durasi < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return i + 1;
+}
