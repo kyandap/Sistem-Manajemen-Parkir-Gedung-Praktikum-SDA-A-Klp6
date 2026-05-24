@@ -17,3 +17,18 @@ typedef struct Kendaraan {
     int status; // 1 = parkir, 0 = keluar
     struct Kendaraan *next;
 } Kendaraan;
+
+// PRIORITY STACK & TEMP STACK
+typedef struct {
+    Kendaraan data[MAX];
+    int top;
+} PriorityStack;
+
+typedef struct {
+    Kendaraan data[MAX];
+    int top;
+} TempStack;
+
+extern PriorityStack parkir;
+extern TempStack sementara;
+extern Kendaraan *head;
