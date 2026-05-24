@@ -1,4 +1,4 @@
-#include "parkir.h"
+#include "header.h"
 
 int main() {
     initStack();
