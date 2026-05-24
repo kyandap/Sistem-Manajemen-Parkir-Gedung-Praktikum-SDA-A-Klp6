@@ -1,107 +1,72 @@
-# 🚗 Sistem Manajemen Parkir Gedung
+SISTEM MANAJEMEN PARKIR GEDUNG FMIPA
 
-Project Ujian Tengah Semester (UTS)
-Mata Kuliah: Struktur Data dan Algoritma A
+Project Ujian Tengah Semester (UTS)  
+Mata Kuliah: Praktikum Struktur Data dan Algoritma A  
+Kelompok: 6  
 
----
+Anggota Kelompok & Jobdesk
 
-📌 Deskripsi
+1. Fathul Hakim – Buat struktur data awal, variabel global, & inisialisasi stack
+2. Kyandaru Annisa Putri – Buat utilitas konversi waktu & operasi priority stack
+3. Muhammad Reza Aryandi – Buat alokasi memori dinamis linked list, temporary stack, & menu input
+4. As-Sajadah Khaira – Buat output menu, mekanisme pengosongan stack, & linear search
+5. Najla Putri Syahnuza – Buat algoritma quick sort & tampilan antarmuka menu
 
-Sistem Manajemen Parkir Gedung merupakan program berbasis **C (Console/CLI)** yang dirancang untuk mengelola data kendaraan yang masuk dan keluar dari area parkir secara terstruktur.
 
-Sistem ini tidak hanya melakukan pengelolaan data, tetapi juga melakukan **analisis sederhana** untuk mendukung pengambilan keputusan, seperti mengetahui kendaraan dengan durasi parkir terlama dan jumlah kendaraan aktif.
+DESKRIPSI PROGRAM:
 
----
+Sistem Manajemen Parkir Gedung FMIPA adalah program berbasis Console (CLI) yang kami buat untuk mengelola aktivitas kendaraan masuk dan keluar secara terstruktur. Di sini, kami menggabungkan manajemen fisik lapangan memakai alokasi memori statis (array) dengan basis data riwayat memakai alokasi memori dinamis (linked list).
 
-👥 Anggota Kelompok
+Program ini kami rancang menggunakan pendekatan Modular Programming. Jadi, logika kodingannya sengaja dipecah ke beberapa file terpisah (header.h, function.c, dan main.c) supaya proses pengolahan data lebih efisien, kodenya rapi, dan tidak ada risiko kebocoran memori (memory leak).
 
-1. Nama Anggota 1 – Koordinator Sistem
-2. Kyandaru Annisa Putri – Queue (Antrian)
-3. Nama Anggota 3 – Stack
-4. As-Sajadah Khaira – Linked List
-5. Nama Anggota 5 – Algoritma & Analisis
 
----
+STUDI KASUS:
 
-🎯 Tujuan
+Aktivitas kendaraan mahasiswa, dosen, dan staf di Gedung FMIPA sangat padat, apalagi pas jam sibuk perkuliahan pagi dan sore. Karena kapasitas parkir terbatas, sering muncul masalah di lapangan seperti susahnya memantau slot yang kosong, mobil terhalang oleh mobil lain saat mau keluar, dan tidak adanya catatan riwayat yang jelas karena semua masih dicatat manual pakai kertas.
 
-* Mengimplementasikan konsep **Struktur Data dan Algoritma**
-* Melatih kemampuan analisis dan perancangan sistem
-* Mengintegrasikan teori dengan studi kasus nyata
-* Membangun sistem yang efisien dan terstruktur
+Sistem ini kami buat untuk menyelesaikan masalah tersebut lewat simulasi tumpukan fisik berbasis prioritas (dosen atau staf dapat posisi paling atas/akses utama) serta pencatatan riwayat kendaraan secara digital biar mempermudah evaluasi operasional parkir gedung.
 
----
 
-⚙️ Fitur Sistem
+STRUKTUR DATA YANG DIGUNAKAN:
 
-* Input data kendaraan (plat nomor, waktu masuk, waktu keluar)
-* Sistem antrian kendaraan masuk (**Queue**)
-* Pengelolaan kendaraan di area parkir (**Stack**)
-* Penyimpanan data kendaraan (**Linked List**)
-* Pengurutan data kendaraan (**Sorting Algorithm**)
-* Analisis durasi parkir
-* Menampilkan data kendaraan
+Ada tiga jenis struktur data utama yang kami terapkan di pakai ini:
 
----
+1. Priority Stack (Tumpukan Prioritas)
+   - Konsep: Pengembangan dari stack biasa yang menggabungkan prinsip LIFO (Last In First Out) dengan mekanisme prioritas. Elemen yang prioritasnya lebih tinggi bakal ditaruh di posisi paling atas supaya bisa diproses duluan.
+   - Implementasi: Digunakan untuk mengatur kendaraan yang sedang parkir di dalam gedung. Kendaraan dosen atau operasional kampus diberi nilai prioritas lebih tinggi biar menempati posisi tumpukan yang gampang diakses kalau mau keluar.
 
-🧱 Struktur Data yang Digunakan
+2. Temporary Stack (Tumpukan Sementara)
+   - Konsep: Stack tambahan yang fungsinya buat tempat penampungan sementara waktu pas kita bongkar-pasang tumpukan utama, dan tetap mengikuti aturan LIFO.
+   - Implementasi: Dipakai sebagai jalur evakuasi saat kendaraan yang di posisi bawah mau keluar. Jadi, kendaraan yang menghalangi di atasnya bakal dipindahin dulu ke Temporary Stack, baru dikembalikan lagi ke Priority Stack utama setelah kendaraan target berhasil keluar. Urutan tumpukan awal tidak akan berubah.
 
-* **Queue** → Mengelola antrian kendaraan masuk
-* **Stack** → Mengatur kendaraan di dalam parkir
-* **Linked List** → Menyimpan data kendaraan
+3. Singly Linked List
+   - Konsep: Struktur data dinamis yang elemennya saling terhubung lewat pointer, sehingga penambahan data sifatnya itu fleksibel dan tidak dibatasi dengan ukuran tetap.
+   - Implementasi: Berperan sebagai pusat database riwayat parkir gedung. Semua data kendaraan (nomor plat, jenis, prioritas, waktu masuk, dan status parkir) disimpan di sini. Datanya tetap aman tersimpan secara permanen walaupun kendaraannya udah keluar dari parkiran fisik.
 
----
 
-⚡ Algoritma yang Digunakan
+ALGORITMA YANG DIGUNAKAN:
 
-* **Bubble Sort** → Mengurutkan data sederhana
-* **Selection Sort** → Alternatif pengurutan data
-* **Quick Sort** → Pengurutan cepat (konsep lanjutan)
-* **Traversal** → Menelusuri data pada Linked List
+1. Quick Sort
+   - Menggunakan metode Divide and Conquer dengan kompleksitas rata-rata O(n log n). Kami pakai algoritma ini untuk mengurutkan data kendaraan yang sudah keluar berdasarkan durasi parkirnya (dari yang tercepat sampai terlama) buat keperluan analisis data pengelola gedung.
 
----
+2. Linear Search
+   - Algoritma pencarian dengan kompleksitas waktu O(n). Kami pakai ini untuk mencari data spesifik kendaraan di dalam Linked List berdasarkan input nomor plat, lalu menampilkan info waktu masuk, status, dan durasi parkirnya.
 
-🔄 Alur Sistem
+3. Linked List Traversal
+   - Proses menelusuri setiap node di dalam Linked List secara berurutan dari awal sampai akhir. Fungsinya untuk membaca semua data riwayat, menampilkan daftar kendaraan yang masih parkir, dan menghitung total kendaraan di dalam gedung.
 
-1. Kendaraan masuk ke antrian (Queue)
-2. Jika tersedia slot parkir, kendaraan masuk ke area parkir (Stack)
-3. Data kendaraan disimpan dalam Linked List
-4. Kendaraan keluar dari parkir
-5. Sistem melakukan analisis data
 
----
+ALUR KERJA SISTEM:
 
-📊 Output Sistem
+1. Tahap Input: Petugas memasukkan data kendaraan baru (nomor plat, jenis, prioritas, dan waktu masuk).
+2. Tahap Penyimpanan: Data tersebut otomatis masuk ke PriorityStack sesuai tingkat prioritasnya, dan di waktu yang sama langsung dicatat ke database LinkedList dengan status aktif (nilai 1 / masih parkir).
+3. Tahap Keluar: Kalau kendaraan yang mau keluar posisinya terhalang, kendaraan di atasnya bakal diungsikan dulu ke TempStack. Setelah kendaraan target keluar, sisa kendaraan dikembalikan lagi ke tumpukan utama. Status kendaraan tadi di LinkedList langsung berubah jadi keluar (nilai 0) dan waktu keluarnya dicatat.
+4. Tahap Analisis: Sistem melakukan penelusuran (Traversal) dan pengurutan (Quick Sort) untuk menampilkan statistik durasi parkir beserta riwayat kendaraan secara rapi.
 
-* Daftar kendaraan parkir
-* Jumlah kendaraan aktif
-* Kendaraan dengan durasi parkir terlama
-* Status parkir (penuh / tersedia)
 
----
+MODULAR FILE PROJECT:
 
-🛠️ Teknologi
-
-* Bahasa C
-* Compiler: GCC / Dev-C++ / Code::Blocks
-* Platform: Console (CLI)
-
----
-
-📌 Catatan
-
-Project ini dibuat untuk memenuhi tugas **Ujian Tengah Semester (UTS)** dan akan dikembangkan lebih lanjut pada **Ujian Akhir Semester (UAS)**.
-
----
-
-🚀 Pengembangan Selanjutnya
-
-* Penambahan fitur pencarian (Binary Search)
-* Visualisasi data parkir
-* Pengembangan ke GUI
-
----
-
-## 📄 Lisensi
-
-Digunakan untuk keperluan akademik.
+- header.h : Tempat menyimpan definisi makro, deklarasi struct, variabel global extern, dan semua prototipe fungsi program.
+- function.c : implementasi lengkap dari seluruh logika fungsi kelompok yang sudah dibagi per anggota.
+- main.c : Berisi fungsi utama (main) untuk mengontrol jalannya menu utama menggunakan switch-case.
+- README.md : Menjelaskan isi project secara lengkap dan terstruktur.
