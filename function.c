@@ -242,3 +242,53 @@ int partition(Kendaraan arr[], int low, int high) {
     swap(&arr[i + 1], &arr[high]);
     return i + 1;
 }
+    
+void quickSort(Kendaraan arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+void urutDurasi() {
+    Kendaraan arr[MAX];
+    int n = 0;
+    Kendaraan *curr = head;
+
+    while (curr != NULL) {
+        if (curr->status == 0) {
+            arr[n++] = *curr;
+        }
+        curr = curr->next;
+    }
+
+    if (n == 0) {
+        printf("Belum ada kendaraan keluar.\n");
+        return;
+    }
+    
+    quickSort(arr, 0, n - 1);
+    printf("\n=== DATA TERURUT BERDASARKAN DURASI ===\n");
+
+    for (int i = 0; i < n; i++) {
+        int durasi = hitungDurasi(arr[i].waktuMasuk, arr[i].waktuKeluar);
+        printf("%s - ", arr[i].plat);
+        tampilDurasi(durasi);
+        printf("\n");
+    }
+}
+
+void menu() {
+    printf("\n====================================\n");
+    printf(" SISTEM MANAJEMEN PARKIR FMIPA\n");
+    printf("====================================\n");
+    printf("1. Kendaraan Masuk\n");
+    printf("2. Kendaraan Keluar\n");
+    printf("3. Tampilkan Data\n");
+    printf("4. Cari Kendaraan\n");
+    printf("5. Urutkan Durasi Parkir\n");
+    printf("0. Keluar\n");
+    printf("====================================\n");
+    printf("Pilih menu : ");
+}
