@@ -6,11 +6,11 @@ Kelompok: 6
 
 Anggota Kelompok & Jobdesk
 
-1. Fathul Hakim (Koordinator) – Membuat struct kendaraan, rancangan awal priority & temporary stack, deklarasi variabel global, dan fungsi inisialisasi stack.
-2. Kyandaru Annisa Putri – Membuat fungsi utilitas waktu (konversi jam ke menit, hitung durasi, format durasi), serta fungsi push dan pop untuk priority stack.
-3. Muhammad Reza Aryandi – Membuat fungsi operasi temporary stack (push & pop temp), fungsi tambah node ke linked list, dan logika alur saat kendaraan masuk.
-4. As-Sajadah Khaira – Membuat fungsi alur saat kendaraan keluar (bongkar stack), fungsi menampilkan data, fungsi pencarian nomor plat (linear search), serta fungsi swap dan partition untuk quick sort.
-5. Najla Putri Syahnuza – Membuat fungsi inti algoritma quick sort, fungsi sorting khusus durasi parkir, struktur tampilan menu, dan fungsi utama di main.c.
+1. Fathul Hakim (250810701100089) – Membuat struct kendaraan, rancangan awal priority & temporary stack, deklarasi variabel global, dan fungsi inisialisasi stack.
+2. Kyandaru Annisa Putri (250810701100059) – Membuat fungsi utilitas waktu (konversi jam ke menit, hitung durasi, format durasi), serta fungsi push dan pop untuk priority stack.
+3. Muhammad Reza Aryandi (250810701100015) – Membuat fungsi operasi temporary stack (push & pop temp), fungsi tambah node ke linked list, dan logika alur saat kendaraan masuk.
+4. As-Sajadah Khaira (250810701100005) – Membuat fungsi alur saat kendaraan keluar (bongkar stack), fungsi menampilkan data, fungsi pencarian nomor plat (linear search), serta fungsi swap dan partition untuk quick sort.
+5. Najla Putri Syahnuza (250810701100115) – Membuat fungsi inti algoritma quick sort, fungsi sorting khusus durasi parkir, struktur tampilan menu, dan fungsi utama di main.c.
 
 
 DESKRIPSI PROGRAM:
