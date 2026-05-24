@@ -60,3 +60,51 @@ void pushPriority(Kendaraan k, int mode) {
 Kendaraan popPriority() {
     return parkir.data[parkir.top--];
 }
+
+//Fungsi untuk memasukkan kendaraan ke tumpukan evakuasi/sementara
+void pushTemp(Kendaraan k) {
+    sementara.data[++sementara.top] = k;
+    printf("Kendaraan %s dipindahkan ke Temporary Stack\n", k.plat);
+}
+
+//Fungsi untuk mengambil kembali kendaraan dari tumpukan sementara
+Kendaraan popTemp() {
+    return sementara.data[sementara.top--];
+}
+
+//Fungsi untuk menyimpan data kendaraan ke riwayat database dinamis
+void tambahLinkedList(Kendaraan k) {
+    Kendaraan *baru = (Kendaraan*) malloc(sizeof(Kendaraan));
+    *baru = k;
+    baru->next = NULL;
+
+    if (head == NULL) {
+        head = baru;
+    } else {
+        Kendaraan *temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = baru;
+    }
+}
+
+//Fungsi utama untuk menginput data kendaraan baru yang masuk parkir
+void kendaraanMasuk() {
+    Kendaraan k;
+    printf("\n=== INPUT KENDARAAN ===\n");
+    printf("Nomor Plat         : ");
+    scanf(" %19s", k.plat);
+    printf("Jenis Kendaraan    : ");
+    scanf(" %19s", k.jenis);
+    printf("Prioritas (1-10)   : ");
+    scanf(" %d", &k.prioritas);
+    printf("Waktu Masuk (HH:MM): ");
+    scanf(" %9s", k.waktuMasuk);
+
+    strcpy(k.waktuKeluar, "-");
+    k.status = 1;
+
+    pushPriority(k, 1);
+    tambahLinkedList(k);
+}
