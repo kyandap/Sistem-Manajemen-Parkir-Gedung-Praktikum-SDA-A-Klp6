@@ -1,6 +1,6 @@
 SISTEM MANAJEMEN PARKIR GEDUNG FMIPA
 
-Project Ujian Tengah Semester (UTS)  
+Project Ujian Akhir Semester (UAS)  
 Mata Kuliah: Praktikum Struktur Data dan Algoritma A  
 Kelompok: 6  
 
@@ -29,7 +29,7 @@ Sistem ini kami buat untuk menyelesaikan masalah tersebut lewat simulasi tumpuka
 
 STRUKTUR DATA YANG DIGUNAKAN:
 
-Ada tiga jenis struktur data utama yang kami pakai disistem:
+Ada tiga jenis struktur data utama yang kami pakai di sistem ini:
 
 1. Priority Stack (Tumpukan Prioritas)
    - Konsep: Pengembangan dari stack biasa yang menggabungkan prinsip LIFO (Last In First Out) dengan mekanisme prioritas. Elemen yang prioritasnya lebih tinggi bakal ditaruh di posisi paling atas supaya bisa diproses duluan.
