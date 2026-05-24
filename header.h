@@ -7,7 +7,7 @@
 
 #define MAX 100
 
-// STRUCT KENDARAAN
+/*Struct Kendaraan*/
 typedef struct Kendaraan {
     char plat[20];
     char jenis[20];
@@ -18,7 +18,7 @@ typedef struct Kendaraan {
     struct Kendaraan *next;
 } Kendaraan;
 
-// PRIORITY STACK & TEMP STACK
+/*Priority Stack dan Temp Stack*/
 typedef struct {
     Kendaraan data[MAX];
     int top;
@@ -32,3 +32,25 @@ typedef struct {
 extern PriorityStack parkir;
 extern TempStack sementara;
 extern Kendaraan *head;
+
+/*Deklarasi Semua Fungsi Kelompok*/
+void initStack();
+int konversiMenit(char waktu[]);
+int hitungDurasi(char masuk[], char keluar[]);
+void tampilDurasi(int totalMenit);
+void pushPriority(Kendaraan k, int mode);
+Kendaraan popPriority();
+void pushTemp(Kendaraan k);
+Kendaraan popTemp();
+void tambahLinkedList(Kendaraan k);
+void kendaraanMasuk();
+void kendaraanKeluar();
+void tampilData();
+void cariKendaraan();
+void swap(Kendaraan *a, Kendaraan *b);
+int partition(Kendaraan arr[], int low, int high);
+void quickSort(Kendaraan arr[], int low, int high);
+void urutDurasi();
+void menu();
+
+#endif
